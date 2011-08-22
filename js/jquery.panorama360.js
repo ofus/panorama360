@@ -18,7 +18,7 @@
 			if(options) $.extend(settings, options);
 			var viewport = $(this);
 			var panoramaContainer = viewport.children('.panorama-container');
-			var viewportImage = panoramaContainer.children('img:first');
+			var viewportImage = panoramaContainer.children('img:first-child');
 			if(settings.image_width<=0 && settings.image_height<=0){
 				settings.image_width = parseInt(viewportImage.data("width"));
 				settings.image_height = parseInt(viewportImage.data("height"));
@@ -45,7 +45,7 @@
 				if (isDragged) return false;
 				scrollDelta = scrollDelta * 0.98;
 				if (Math.abs(scrollDelta)<=2) scrollDelta = 0;
-				scrollView(panoramaContainer, elem_width, scrollDelta,settings);
+				scrollView(panoramaContainer, elem_width, scrollDelta, settings);
 			}, 1);
 			viewport.mousedown(function(e){
 				if (isDragged) return false;
@@ -65,6 +65,8 @@
 				mouseXprev = e.clientX;
 				scrollView(panoramaContainer, elem_width, scrollDelta,settings);
 				return false;
+			}).mouseout(function(e){
+				isDragged = false;
 			}).bind("mousewheel",function(e,distance){
 				var delta=Math.ceil(Math.sqrt(Math.abs(distance)));
 				delta=distance<0 ? -delta : delta;
