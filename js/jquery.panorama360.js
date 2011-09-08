@@ -95,7 +95,7 @@
 					switch ($(this).attr("shape").toLowerCase()){
 						case 'rect':
 							var area_coord = $(this).attr("coords").split(",");
-							$area1 = $("<a class='area' href='"+$(this).attr("href")+"' title='"+$(this).attr("alt")+"'</a>");
+							$area1 = $("a").addClass("area").attr("href",$(this).attr("href")).attr("title",$(this).attr("alt"));
 							panoramaContainer.append($area1.data("stitch",1).data("coords",area_coord));
 							panoramaContainer.append($area1.clone().data("stitch",2).data("coords",area_coord));
 							break;
